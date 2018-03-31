@@ -15,8 +15,8 @@
 		<link href="css/animate.min.css" rel="stylesheet" />
 		<link href="css/light-bootstrap-dashboard.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
-		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
-		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css' />
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css' />
 		<link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -26,7 +26,7 @@
 		<![endif]-->
 
 	</head>
-	
+
 	<body ng-app="acServerManager" ng-controller="ServerCtrl" ng-cloak>
 		<div class="wrapper">
 			<div class="sidebar" data-color="red" data-image="img/sidebar-5.jpg">
@@ -100,11 +100,11 @@
 						<div class="alerts">
 							<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 						</div>
-						
+
 						<form ng-submit="submit()" name="form" data-toggle="validator">
 							<fieldset>
 								<legend>Basic Details</legend>
-								
+
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="form-group" show-errors>
@@ -112,14 +112,14 @@
 											<input class="form-control" name="name" ng-model="server.NAME" required/>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-4">
 										<div class="form-group">
 											<label>Server Password</label>
 											<input type="password" class="form-control" ng-model="server.PASSWORD"/>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-4">
 										<div class="form-group">
 											<label>Admin Password</label>
@@ -128,10 +128,10 @@
 									</div>
 								</div>
 							</fieldset>
-							
+
 							<fieldset class="top10">
 								<legend>Ports</legend>
-								
+
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="form-group" show-errors>
@@ -139,14 +139,14 @@
 											<input class="form-control" name="udp_port" ng-model="server.UDP_PORT" required/>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-4">
 										<div class="form-group" show-errors>
 											<label>TCP Port</label>
 											<input class="form-control" name="tcp_port" ng-model="server.TCP_PORT" required/>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-4">
 										<div class="form-group" show-errors>
 											<label>HTTP Port</label>
@@ -155,10 +155,10 @@
 									</div>
 								</div>
 							</fieldset>
-							
+
 							<fieldset class="top10">
 								<legend>Cars and Tracks</legend>
-								
+
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
@@ -166,7 +166,7 @@
 											<select multiple size="10" class="form-control" ng-model="selectedCars" ng-options="car as car for car in cars" ng-change="carsChanged()"></select>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-6">
 										<div class="row">
 											<div class="col-sm-12">
@@ -176,7 +176,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="row" ng-show="configs">
 											<div class="col-sm-12">
 												<div class="form-group">
@@ -185,7 +185,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="col-sm-6">
@@ -196,7 +196,7 @@
 														<p>Pit Boxes: <span>{{trackDetails.pitboxes}}</span><p>
 													</div>
 												</div>
-												
+
 												<div class="col-sm-6">
 													<img ng-src="{{trackImage}}" style="max-width: 100%" />
 												</div>
@@ -204,7 +204,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="form-group">
@@ -214,10 +214,10 @@
 									</div>
 								</div>
 							</fieldset>
-							
+
 							<fieldset class="top10">
 								<legend>Session Details</legend>
-								
+
 								<div class="row">
 									<div class="col-sm-2">
 										<div class="form-group">
@@ -225,7 +225,7 @@
 											<select class="form-control" ng-model="selectedSession" ng-options="session as session.type for session in sessions"></select>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-2">
 										<label>Enabled</label>
 										<div class="checkbox">
@@ -234,36 +234,36 @@
 											</label>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-8" ng-show="selectedSession.enabled">
 										<div class="col-sm-3">
 											<div class="form-group">
 												<label>Name</label>
 												<input class="form-control" name="session_name" ng-model="selectedSession.data.NAME"/>
-											</div>						
+											</div>
 										</div>
-										
+
 										<div class="col-sm-3" ng-hide="selectedSession.hideTime">
 											<div class="form-group">
 												<label>Time</label>
 												<input class="form-control" name="session_time" ng-model="selectedSession.data.TIME"/>
-											</div>						
+											</div>
 										</div>
-										
+
 										<div class="col-sm-3" ng-hide="selectedSession.hideLaps">
 											<div class="form-group">
 												<label>Laps</label>
 												<input class="form-control" name="session_laps" ng-model="selectedSession.data.LAPS"/>
-											</div>						
+											</div>
 										</div>
-										
+
 										<div class="col-sm-3" ng-hide="selectedSession.hideWaitTime">
 											<div class="form-group">
 												<label>Wait Time</label>
 												<input class="form-control" name="session_wait_time" ng-model="selectedSession.data.WAIT_TIME"/>
-											</div>						
+											</div>
 										</div>
-										
+
 										<div class="col-sm-3" ng-hide="selectedSession.hideJoinType">
 											<div class="form-group">
 												<label>Join Type</label>
@@ -272,30 +272,30 @@
 													<option value="1">Open</option>
 													<option value="2">Close at start</option>
 												</select>
-											</div>						
+											</div>
 										</div>
-										
+
 										<div class="col-sm-3" ng-hide="selectedSession.hideWaitPercentage">
 											<div class="form-group">
 												<label>Wait Percentage</label>
 												<input class="form-control" name="qualify_max_wait_perc" ng-model="server.QUALIFY_MAX_WAIT_PERC">
-											</div>						
+											</div>
 										</div>
-										
+
 										<div class="col-sm-3" ng-hide="selectedSession.hideRacePitWindowStart">
 											<div class="form-group">
 												<label>Race Pit Window Start</label>
 												<input class="form-control" name="race_pit_window_start" ng-model="server.RACE_PIT_WINDOW_START">
-											</div>						
+											</div>
 										</div>
-										
+
 										<div class="col-sm-3" ng-hide="selectedSession.hideRacePitWindowEnd">
 											<div class="form-group">
 												<label>Race Pit Window End</label>
 												<input class="form-control" name="race_pit_window_end" ng-model="server.RACE_PIT_WINDOW_END">
-											</div>						
+											</div>
 										</div>
-										
+
 										<div class="col-sm-3" ng-hide="selectedSession.hideExtraLap">
 											<div class="form-group">
 												<label>Extra Lap</label>
@@ -303,62 +303,62 @@
 													<option value="1">Yes</option>
 													<option value="0">No</option>
 												</select>
-											</div>						
+											</div>
 										</div>
-										
+
 										<div class="col-sm-3" ng-hide="selectedSession.hideRaceOverTime">
 											<div class="form-group">
 												<label>Race Over Time</label>
 												<input class="form-control" name="session_race_over_time" ng-model="server.RACE_OVER_TIME"/>
-											</div>						
+											</div>
 										</div>
-										
+
 										<div class="col-sm-3" ng-hide="selectedSession.hideReversedGridRacePositions">
 											<div class="form-group">
 												<label>Reversed Grid Race Positions</label>
 												<input class="form-control" name="reversed_grid_race_positions" ng-model="server.REVERSED_GRID_RACE_POSITIONS">
-											</div>						
+											</div>
 										</div>
-										
+
 										<div class="col-sm-3" ng-hide="selectedSession.hideCanJoin">
 											<label>Can Join</label>
 											<div class="checkbox">
 												<label>
 													<toggle-switch class="switch-large" ng-model="selectedSession.data.IS_OPEN"></toggle-switch>
 												</label>
-											</div>						
+											</div>
 										</div>
-										
+
 									</div>
 								</div>
-								
+
 							</fieldset>
 
 							<fieldset class="top10">
 								<legend>Other Options</legend>
-								
+
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="form-group" show-errors>
 											<label>Time (hh)</label>
 											<input class="form-control" name="hours" ng-model="hours"/>
-										</div>						
+										</div>
 									</div>
-									
+
 									<div class="col-sm-4">
 										<div class="form-group" show-errors>
 											<label>(mm)</label>
 											<input class="form-control" name="mins" ng-model="mins"/>
-										</div>	
+										</div>
 									</div>
-									
+
 									<div class="col-sm-4">
 										<div class="form-group" show-errors>
 											<label>Max Clients</label>
 											<input class="form-control" name="max_clients" ng-model="server.MAX_CLIENTS" required/>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-4">
 										<div class="form-group" show-errors>
 											<label>Jump Start</label>
@@ -369,10 +369,10 @@
 											</select>
 										</div>
 									</div>
-									
+
 								</div>
 								<div class="row">
-									
+
 									<div class="col-sm-2">
 										<label>Locked Entry List</label>
 										<div class="checkbox">
@@ -381,7 +381,7 @@
 											</label>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-2">
 										<label>Loop Session</label>
 										<div class="checkbox">
@@ -390,7 +390,7 @@
 											</label>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-2">
 										<label>Pickup Mode Enabled</label>
 										<div class="checkbox">
@@ -399,7 +399,7 @@
 											</label>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-2">
 										<label>Show on Lobby</label>
 										<div class="checkbox">
@@ -410,16 +410,16 @@
 									</div>
 								</div>
 							</fieldset>
-						
+
 							<fieldset class="top10">
 								<legend>Weather</legend>
-								
+
 								<div class="row">
 									<div class="col-sm-12">
 										<button type="button" class="btn btn-danger btn-sm" ng-click="addWeather()">Add Weather</button>
 									</div>
 								</div>
-								
+
 								<div class="row">
 									<div class="col-sm-3" ng-repeat="weather in weatherSettings">
 										<div>
@@ -428,7 +428,7 @@
 												<a href="javascript:void(0);" ng-click="removeWeather($index)" title="Remove"><span class="glyphicon glyphicon-remove right" aria-hidden="true"></span></a>
 											</h4>
 										</div>
-										
+
 										<div class="form-group">
 											<label>Graphics</label>
 											<select class="form-control" ng-model="weather.GRAPHICS">
@@ -441,22 +441,22 @@
 												<option value="6_mid_clouds">Mid Clouds</option>
 											</select>
 										</div>
-										
+
 										<div class="form-group" show-errors>
 											<label>Base Ambient Temp</label>
 											<input class="form-control" type="number" string-to-number name="base_temperature_ambient" ng-model="weather.BASE_TEMPERATURE_AMBIENT" required/>
 										</div>
-										
+
 										<div class="form-group" show-errors>
 											<label>Base Road Temp</label>
 											<input class="form-control" type="number" string-to-number name="base_temperature_road" ng-model="weather.BASE_TEMPERATURE_ROAD" required/>
 										</div>
-										
+
 										<div class="form-group" show-errors>
 											<label>Ambient Variation</label>
 											<input class="form-control" type="number" string-to-number name="ambient_variation" ng-model="weather.VARIATION_AMBIENT" required/>
 										</div>
-										
+
 										<div class="form-group" show-errors>
 											<label>Road Variation</label>
 											<input class="form-control" type="number" string-to-number name="road_variation" ng-model="weather.VARIATION_ROAD" required/>

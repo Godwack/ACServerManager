@@ -15,8 +15,8 @@
 		<link href="css/animate.min.css" rel="stylesheet" />
 		<link href="css/light-bootstrap-dashboard.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
-		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
-		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css' />
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css' />
 		<link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -26,7 +26,7 @@
 		<![endif]-->
 
 	</head>
-	
+
 	<body ng-app="acServerManager" ng-controller="AdvancedCtrl" ng-cloak>
 		<div class="wrapper">
 			<div class="sidebar" data-color="red" data-image="img/sidebar-2.jpg">
@@ -100,7 +100,7 @@
 						<div class="alerts">
 							<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 						</div>
-						
+
 						<form ng-submit="submit()" name="form" data-toggle="validator">
 							<legend>Advanced Rules</legend>
 							<div class="row">
@@ -110,14 +110,14 @@
 										<input class="form-control" name="sleep_time" ng-model="server.SLEEP_TIME" required/>
 									</div>
 								</div>
-								
+
 								<div class="col-sm-4">
 									<div class="form-group" show-errors>
 										<label>Voting Quorum</label>
 										<input class="form-control" name="voting_quorum" ng-model="server.VOTING_QUORUM" required/>
 									</div>
 								</div>
-								
+
 								<div class="col-sm-4">
 									<div class="form-group" show-errors>
 										<label>Voting Duration</label>
@@ -125,7 +125,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="row">
 								<div class="col-sm-4">
 									<div class="form-group" show-errors>
@@ -133,7 +133,7 @@
 										<input class="form-control" name="kick_vote_quorum" ng-model="server.KICK_QUORUM" required/>
 									</div>
 								</div>
-								
+
 								<div class="col-sm-4">
 									<div class="form-group" show-errors>
 										<label>Blacklist Mode</label>
@@ -144,7 +144,7 @@
 										</select>
 									</div>
 								</div>
-								
+
 								<div class="col-sm-4">
 									<div class="form-group" show-errors>
 										<label>Client Send Interval (hz)</label>
@@ -152,7 +152,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="row">
 								<div class="col-sm-4">
 									<div class="form-group" show-errors>
@@ -160,16 +160,16 @@
 										<input class="form-control" type="number" min="0" string-to-number name="max_ballast" ng-model="server.MAX_BALLAST_KG" required/>
 									</div>
 								</div>
-								
+
 								<div class="col-sm-4">
 									<div class="form-group show-errors>
 										<label>Result Screen Time</label>
 										<input class="form-control" name="result_screen_time" ng-model="server.RESULT_SCREEN_TIME" required>
 									 </div>
 								</div>
-								
+
 							</div>
-							
+
 							<fieldset class="top10">
 								<legend>Plugin</legend>
 								<div class="row">
@@ -179,14 +179,14 @@
 											<input class="form-control" type="number" min="0" string-to-number name="udp_local_port" ng-model="server.UDP_PLUGIN_LOCAL_PORT"/>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-4">
 										<div class="form-group" show-errors>
 											<label>UDP Address</label>
 											<input class="form-control" name="udp_address" ng-model="server.UDP_PLUGIN_ADDRESS"/>
 										</div>
 									</div>
-									
+
 									<div class="col-sm-4">
 										<div class="form-group" show-errors>
 											<label>Auth Address</label>
@@ -195,7 +195,7 @@
 									</div>
 								</div>
 							</fieldset>
-							
+
 							<div class="row top30 bottom30">
 								<div class="col-sm-6">
 									<button type="submit" class="btn btn-danger btn-sm">Save Changes</button>

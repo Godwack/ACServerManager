@@ -87,7 +87,7 @@ function writeLogFile(filename, message) {
 		fs.appendFile(__dirname + '/logs/' + filename, message + '\r\n', function (err) {});
 	} catch (e) {
 		console.log('Error - ' + e);
-	}	
+	}
 }
 
 function buildSTrackerPath(sTrackerPath) {
@@ -125,72 +125,72 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/frontend'));
 
 // get complete configuration
-app.get('/api', function (req, res) {
+app.get('api', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config);
 	} catch (e) {
-		console.log('Error: GET/api - ' + e);
+		console.log('Error: GETapi - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get server config
-app.get('/api/server', function (req, res) {
+app.get('api/server', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.SERVER);
 	} catch (e) {
-		console.log('Error: GET/api/server - ' + e);
+		console.log('Error: GETapi/server - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get server status
-app.get('/api/server/status', function (req, res) {
+app.get('api/server/status', function (req, res) {
 	try {
 		res.status(200);
 		res.send({ session: currentSession });
 	} catch (e) {
-		console.log('Error: GET/api/server/status - ' + e);
+		console.log('Error: GETapi/server/status - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get server config by id
-app.get('/api/server/:id', function (req, res) {
+app.get('api/server/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send({ value: config.SERVER[req.params.id.toUpperCase()] });
 	} catch (e) {
-		console.log('Error: GET/api/server/:id - ' + e);
+		console.log('Error: GETapi/server/:id - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post new server config
-app.post('/api/server', function (req, res) {
+app.post('api/server', function (req, res) {
 	try {
 		for (var param in req.body) {
 			config.SERVER[param.toUpperCase()] = req.body[param];
 		}
-		
+
 		saveConfig();
 		res.status(200);
 		res.send('OK');
 	} catch (e) {
-		console.log('Error: POST/api/server - ' + e);
+		console.log('Error: POSTapi/server - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post server config by id
-app.post('/api/server/:id', function (req, res) {
+app.post('api/server/:id', function (req, res) {
 	try {
 		config.SERVER[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -198,38 +198,38 @@ app.post('/api/server/:id', function (req, res) {
 		res.send('OK');
 	}
 	catch (e) {
-		console.log('Error: POST/api/server/:id - ' + e);
+		console.log('Error: POSTapi/server/:id - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get booking config
-app.get('/api/book', function (req, res) {
+app.get('api/book', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.BOOK);
 	} catch (e) {
-		console.log('Error: GET/api/book - ' + e);
+		console.log('Error: GETapi/book - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get booking config by id
-app.get('/api/book/:id', function (req, res) {
+app.get('api/book/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.BOOK[req.params.id.toUpperCase()]);
 	} catch (e) {
-		console.log('Error: GET/api/book/:id - ' + e);
+		console.log('Error: GETapi/book/:id - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post new booking config
-app.post('/api/book', function (req, res) {
+app.post('api/book', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.BOOK) {
@@ -248,52 +248,52 @@ app.post('/api/book', function (req, res) {
 		res.status(200);
 		res.send('OK');
 	} catch (e) {
-		console.log('Error: POST/api/book/ - ' + e);
+		console.log('Error: POSTapi/book/ - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post booking config by id
-app.post('/api/book/:id', function (req, res) {
+app.post('api/book/:id', function (req, res) {
 	try {
 		config.BOOK[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
 		res.status(200);
 		res.send('OK');
 	} catch (e) {
-		console.log('Error: POST/api/book/:id - ' + e);
+		console.log('Error: POSTapi/book/:id - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get practice config
-app.get('/api/practice', function (req, res) {
+app.get('api/practice', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.PRACTICE);
 	} catch (e) {
-		console.log('Error: GET/api/practice - ' + e);
+		console.log('Error: GETapi/practice - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get practice config by id
-app.get('/api/practice/:id', function (req, res) {
+app.get('api/practice/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.PRACTICE[req.params.id.toUpperCase()]);
 	} catch (e) {
-		console.log('Error: GET/api/practice/:id - ' + e);
+		console.log('Error: GETapi/practice/:id - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post new practice config
-app.post('/api/practice', function (req, res) {
+app.post('api/practice', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.PRACTICE) {
@@ -312,7 +312,7 @@ app.post('/api/practice', function (req, res) {
 		res.status(200);
 		res.send('OK');
 	} catch (e) {
-		console.log('Error: POST/api/practice - ' + e);
+		console.log('Error: POSTapi/practice - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
@@ -320,37 +320,37 @@ app.post('/api/practice', function (req, res) {
 });
 
 // post practice config by id
-app.post('/api/practice/:id', function (req, res) {
+app.post('api/practice/:id', function (req, res) {
 	try {
 		config.PRACTICE[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
 		res.status(200);
 		res.send('OK');
 	} catch (e) {
-		console.log('Error: POST/api/practice/:id - ' + e);
+		console.log('Error: POSTapi/practice/:id - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get qualify config
-app.get('/api/qualify', function (req, res) {
+app.get('api/qualify', function (req, res) {
 	try {
 		res.send(config.QUALIFY);
 	} catch (e) {
-		console.log('Error: GET/api/qualify - ' + e);
+		console.log('Error: GETapi/qualify - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get qualify config by id
-app.get('/api/qualify/:id', function (req, res) {
+app.get('api/qualify/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.QUALIFY[req.params.id.toUpperCase()]);
 	} catch (e) {
-		console.log('Error: GET/api/qualify/:id - ' + e);
+		console.log('Error: GETapi/qualify/:id - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
@@ -358,7 +358,7 @@ app.get('/api/qualify/:id', function (req, res) {
 });
 
 // post new qualify config
-app.post('/api/qualify', function (req, res) {
+app.post('api/qualify', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.QUALIFY) {
@@ -377,51 +377,51 @@ app.post('/api/qualify', function (req, res) {
 		res.status(200);
 		res.send('OK');
 	} catch (e) {
-		console.log('Error: POST/api/qualify - ' + e);
+		console.log('Error: POSTapi/qualify - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post qualify config
-app.post('/api/qualify/:id', function (req, res) {
+app.post('api/qualify/:id', function (req, res) {
 	try {
 		config.QUALIFY[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
 		res.status(200);
 		res.send('OK');
 	} catch (e) {
-		console.log('Error: POST/api/qualify/:id - ' + e);
+		console.log('Error: POSTapi/qualify/:id - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get race config
-app.get('/api/race', function (req, res) {
+app.get('api/race', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.RACE);
 	} catch (e) {
-		console.log('Error: GET/api/race - ' + e);
+		console.log('Error: GETapi/race - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get race config by id
-app.get('/api/race/:id', function (req, res) {
+app.get('api/race/:id', function (req, res) {
 	try {
 		res.send(config.RACE[req.params.id.toUpperCase()]);
 	} catch (e) {
-		console.log('Error: GET/api/race/:id - ' + e);
+		console.log('Error: GETapi/race/:id - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post new race config
-app.post('/api/race', function (req, res) {
+app.post('api/race', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.RACE) {
@@ -440,52 +440,52 @@ app.post('/api/race', function (req, res) {
 		res.status(200);
 		res.send('OK');
 	} catch (e) {
-		console.log('Error: POST/api/race - ' + e);
+		console.log('Error: POSTapi/race - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post race config by id
-app.post('/api/race/:id', function (req, res) {
+app.post('api/race/:id', function (req, res) {
 	try {
 		config.RACE[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
 		res.status(200);
 		res.send('OK');
 	} catch (e) {
-		console.log('Error: POST/api/race/:id - ' + e);
+		console.log('Error: POSTapi/race/:id - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get dynamictrack config
-app.get('/api/dynamictrack', function (req, res) {
+app.get('api/dynamictrack', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.DYNAMIC_TRACK);
 	} catch (e) {
-		console.log('Error: GET/api/dynamictrack - ' + e);
+		console.log('Error: GETapi/dynamictrack - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get dynamictrack config by id
-app.get('/api/dynamictrack/:id', function (req, res) {
+app.get('api/dynamictrack/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.DYNAMIC_TRACK[req.params.id.toUpperCase()]);
 	} catch (e) {
-		console.log('Error: GET/api/dynamictrack/:id - ' + e);
+		console.log('Error: GETapi/dynamictrack/:id - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post dynamictrack config
-app.post('/api/dynamictrack', function (req, res) {
+app.post('api/dynamictrack', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.DYNAMIC_TRACK) {
@@ -504,28 +504,28 @@ app.post('/api/dynamictrack', function (req, res) {
 		res.status(200);
 		res.send('OK');
 	} catch (e) {
-		console.log('Error: POST/api/dynamictrack - ' + e);
+		console.log('Error: POSTapi/dynamictrack - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post track dynamictrack config by id
-app.post('/api/dynamictrack/:id', function (req, res) {
+app.post('api/dynamictrack/:id', function (req, res) {
 	try {
 		config.DYNAMIC_TRACK[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
 		res.status(200);
 		res.send('OK');
 	} catch (e) {
-		console.log('Error: POST/api/dynamictrack/:id - ' + e);
+		console.log('Error: POSTapi/dynamictrack/:id - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get weather config
-app.get('/api/weather', function (req, res) {
+app.get('api/weather', function (req, res) {
 	try {
 		var weather = [];
 
@@ -538,14 +538,14 @@ app.get('/api/weather', function (req, res) {
 		res.status(200);
 		res.send(weather);
 	} catch (e) {
-		console.log('Error: GET/api/weather - ' + e);
+		console.log('Error: GETapi/weather - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post weather config
-app.post('/api/weather', function (req, res) {
+app.post('api/weather', function (req, res) {
 	try {
 		Object.keys(config).forEach(function (key) {
 			if (key.indexOf("WEATHER_") === 0) {
@@ -561,14 +561,14 @@ app.post('/api/weather', function (req, res) {
 		res.status(200);
 		res.send('OK');
 	} catch (e) {
-		console.log('Error: POST/api/weather - ' + e);
+		console.log('Error: POSTapi/weather - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get tracks available on server
-app.get('/api/tracks', function (req, res) {
+app.get('api/tracks', function (req, res) {
 	try {
 		var trackNames = fs.readdirSync(contentPath + "/tracks");
 		var tracks = [];
@@ -592,81 +592,81 @@ app.get('/api/tracks', function (req, res) {
 		res.status(200);
 		res.send(tracks);
 	} catch (e) {
-		console.log('Error: GET/api/tracks - ' + e);
+		console.log('Error: GETapi/tracks - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get track
-app.get('/api/tracks/:track', function (req, res) {
+app.get('api/tracks/:track', function (req, res) {
 	try {
 		var trackDetails = fs.readFileSync(contentPath + '/tracks/' + req.params.track + '/ui/ui_track.json', 'utf-8');
 		res.status(200);
 		res.send(trackDetails);
 	} catch (e) {
-		console.log('Error: GET/api/tracks/:track - ' + e);
+		console.log('Error: GETapi/tracks/:track - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get track image
-app.get('/api/tracks/:track/image', function (req, res) {
+app.get('api/tracks/:track/image', function (req, res) {
 	try {
 		res.status(200);;
 		var image = fs.readFileSync(contentPath + '/tracks/' + req.params.track + '/ui/preview.png');
 		res.contentType('image/jpeg');
 		res.send(image);
 	} catch (e) {
-		console.log('Error: GET/api/tracks/:track/image - ' + e);
+		console.log('Error: GETapi/tracks/:track/image - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get track config
-app.get('/api/tracks/:track/:config', function (req, res) {
+app.get('api/tracks/:track/:config', function (req, res) {
 	try {
 		var trackDetails = fs.readFileSync(contentPath + '/tracks/' + req.params.track + '/ui/' + req.params.config + '/ui_track.json', 'utf-8');
 		res.status(200);
 		res.send(trackDetails);
 	} catch (e) {
-		console.log('Error: GET/api/tracks/:track/:config - ' + e);
+		console.log('Error: GETapi/tracks/:track/:config - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get track config image
-app.get('/api/tracks/:track/:config/image', function (req, res) {
+app.get('api/tracks/:track/:config/image', function (req, res) {
 	try {
 		res.status(200);;
 		var image = fs.readFileSync(contentPath + '/tracks/' + req.params.track + '/ui/' + req.params.config + '/preview.png');
 		res.contentType('image/jpeg');
 		res.send(image);
 	} catch (e) {
-		console.log('Error: GET/api/tracks/:track/:config/image - ' + e);
+		console.log('Error: GETapi/tracks/:track/:config/image - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get cars available on server
-app.get('/api/cars', function (req, res) {
+app.get('api/cars', function (req, res) {
 	try {
 		var cars = fs.readdirSync(contentPath + "/cars");
 		res.status(200);
 		res.send(cars);
 	} catch (e) {
-		console.log('Error: GET/api/cars - ' + e);
+		console.log('Error: GETapi/cars - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get car skin
-app.get('/api/cars/:car', function (req, res) {
+app.get('api/cars/:car', function (req, res) {
 	try {
 		var skins = {}
 		try {
@@ -679,26 +679,26 @@ app.get('/api/cars/:car', function (req, res) {
 		res.status(200);
 		res.send({ skins: skins });
 	} catch (e) {
-		console.log('Error: GET/api/cars/:car - ' + e);
+		console.log('Error: GETapi/cars/:car - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get entry list
-app.get('/api/entrylist', function (req, res) {
+app.get('api/entrylist', function (req, res) {
 	try {
 		res.status(200);
 		res.send(entryList);
 	} catch (e) {
-		console.log('Error: GET/api/entrylist - ' + e);
+		console.log('Error: GETapi/entrylist - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post entry list
-app.post('/api/entrylist', function (req, res) {
+app.post('api/entrylist', function (req, res) {
 	try {
 		var newEntryList = {};
 
@@ -719,7 +719,7 @@ app.post('/api/entrylist', function (req, res) {
 });
 
 // get drivers
-app.get('/api/drivers', function (req, res) {
+app.get('api/drivers', function (req, res) {
 	try {
 		var drivers = [];
 
@@ -740,7 +740,7 @@ app.get('/api/drivers', function (req, res) {
 });
 
 // post drivers
-app.post('/api/drivers', function (req, res) {
+app.post('api/drivers', function (req, res) {
 	try {
 		var drivers = [];
 		var driver = {};
@@ -774,7 +774,7 @@ app.post('/api/drivers', function (req, res) {
 });
 
 // delete driver by guid
-app.delete('/api/drivers/:guid', function (req, res) {
+app.delete('api/drivers/:guid', function (req, res) {
 	try {
 		var guid = req.params.guid;
 		if (!guid) {
@@ -805,7 +805,7 @@ app.delete('/api/drivers/:guid', function (req, res) {
 		});
 	}
 	catch (e) {
-		console.log('Error: DELETE/api/drivers - ' + e);
+		console.log('Error: DELETEapi/drivers - ' + e);
 		res.status(500);
 		res.send("Failed to delete driver");
 		return;
@@ -816,7 +816,7 @@ app.delete('/api/drivers/:guid', function (req, res) {
 });
 
 // get tyres for cars
-app.get('/api/tyres', function (req, res) {
+app.get('api/tyres', function (req, res) {
 	try {
 		var result = ksTyres;
 		if (modTyres) {
@@ -845,19 +845,19 @@ app.get('/api/tyres', function (req, res) {
 });
 
 // get acserver status
-app.get('/api/acserver/status', function (req, res) {
+app.get('api/acserver/status', function (req, res) {
 	try {
 		res.status(200);
 		res.send({ status: acServerStatus });
 	} catch (e) {
-		console.log('Error: GET/api/acserver/status - ' + e);
+		console.log('Error: GETapi/acserver/status - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // start acserver process
-app.post('/api/acserver', function (req, res) {
+app.post('api/acserver', function (req, res) {
 	try {
 		console.log("OS is " + process.platform);
 		var acServer = undefined;
@@ -882,7 +882,7 @@ app.post('/api/acserver', function (req, res) {
 			if (dataString.indexOf('OK') !== -1) {
 				acServerStatus = 1;
 			}
-			
+
 		   if (dataString.indexOf('stracker has been restarted') !== -1) {
 				sTrackerServerStatus = 1
 			}
@@ -915,14 +915,14 @@ app.post('/api/acserver', function (req, res) {
 		res.status(200);
 		res.send("OK");
 	} catch (e) {
-		console.log('Error: POST/api/acserver - ' + e);
+		console.log('Error: POSTapi/acserver - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post stop ac server
-app.post('/api/acserver/stop', function (req, res) {
+app.post('api/acserver/stop', function (req, res) {
 	try {
 		if (acServerPid) {
 			if (isRunningOnWindows) {
@@ -940,30 +940,30 @@ app.post('/api/acserver/stop', function (req, res) {
 		res.status(200);
 		res.send("OK");
 	} catch (e) {
-		console.log('Error: POST/api/acserver/stop - ' + e);
+		console.log('Error: POSTapi/acserver/stop - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // get stracker server status
-app.get('/api/strackerserver/status', function (req, res) {
+app.get('api/strackerserver/status', function (req, res) {
 	try {
 		res.status(200);
 		res.send({ status: sTrackerPath === '' ? -2 : sTrackerServerStatus });
 	} catch (e) {
-		console.log('Error: GET/api/strackerserver/status - ' + e);
+		console.log('Error: GETapi/strackerserver/status - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post start stracker server
-app.post('/api/strackerserver', function (req, res) {
+app.post('api/strackerserver', function (req, res) {
 	try {
 		var sTracker = childProcess.spawn('stracker.exe', ['--stracker_ini', 'stracker.ini'], { cwd: sTrackerPath });
 		sTrackerServerPid = sTracker.pid;
-		
+
 		if (sTrackerServerStatus == 0) {
 			sTrackerServerStatus = -1;
 		}
@@ -985,14 +985,14 @@ app.post('/api/strackerserver', function (req, res) {
 		res.status(200);
 		res.send("OK");
 	} catch (e) {
-		console.log('Error: POST/api/strackerserver - ' + e);
+		console.log('Error: POSTapi/strackerserver - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}
 });
 
 // post stop stracker server
-app.post('/api/strackerserver/stop', function (req, res) {
+app.post('api/strackerserver/stop', function (req, res) {
 	try {
 		if (sTrackerServerPid) {
 			childProcess.spawn("taskkill", ["/pid", sTrackerServerPid, '/f', '/t']);
@@ -1002,7 +1002,7 @@ app.post('/api/strackerserver/stop', function (req, res) {
 		res.status(200);
 		res.send("OK");
 	} catch (e) {
-		console.log('Error: POST/api/strackerserver/stop - ' + e);
+		console.log('Error: POSTapi/strackerserver/stop - ' + e);
 		res.status(500);
 		res.send('Application error');
 	}

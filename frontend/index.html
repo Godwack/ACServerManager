@@ -14,8 +14,8 @@
 		<link href="css/animate.min.css" rel="stylesheet" />
 		<link href="css/light-bootstrap-dashboard.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
-		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
-		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css' />
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css' />
 		<link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -25,7 +25,7 @@
 		<![endif]-->
 
 	</head>
-	
+
 	<body ng-app="acServerManager" ng-controller="StatusCtrl" ng-cloak>
 		<div class="wrapper">
 			<div class="sidebar" data-color="red" data-image="img/sidebar-1.jpg">
@@ -99,26 +99,26 @@
 						<div class="alerts">
 							<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 						</div>
-						
+
 						<form>
 							<fieldset>
 								<legend>Assetto Corsa Server</legend>
-								
+
 								<div class="row">
 									<div class="col-sm-2">
 										<p class="lead" ng-class="acServerStatus ? 'bg-success' : 'bg-danger'">{{acServerStatus === 1 ? 'Running' : acServerStatus === 0 ? 'Stopped' : 'Loading...'}}</p>
 									</div>
-									
+
 									<div class="col-sm-3">
 										<button type="button" class="btn btn-success btn-sm" ng-show="acServerStatus === 0" ng-click="startACServer()">
 											<span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start
 										</button>
-										
+
 										<div class="btn-group" role="group">
 											<button type="button" class="btn btn-danger btn-sm" ng-show="acServerStatus === 1" ng-click="restartACServer()">
 												<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Restart
 											</button>
-											
+
 											<button type="button" class="btn btn-danger btn-sm" ng-show="acServerStatus === 1" ng-click="stopACServer()">
 												<span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop
 											</button>
@@ -127,25 +127,25 @@
 									</div>
 								</div>
 							</fieldset>
-							
+
 							<fieldset class="top10" ng-hide="sTrackerServerStatus === -2">
 								<legend>sTracker Server</legend>
-								
+
 								<div class="row">
 									<div class="col-sm-2">
 										<p class="lead" ng-class="sTrackerServerStatus ? 'bg-success' : 'bg-danger'">{{sTrackerServerStatus === 1 ? 'Running' : acServerStatus === 0 ? 'Stopped' : 'Loading...'}}</p>
 									</div>
-									
+
 									<div class="col-sm-3">
 										<button type="button" class="btn btn-success btn-sm" ng-show="sTrackerServerStatus === 0 && acServerStatus === 1" ng-click="startSTrackerServer()">
 											<span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start
 										</button>
-										
+
 										<div class="btn-group" role="group">
 											<button type="button" class="btn btn-danger btn-sm" ng-show="sTrackerServerStatus === 1" ng-click="restartSTrackerServer()">
 												<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Restart
 											</button>
-											
+
 											<button type="button" class="btn btn-danger btn-sm" ng-show="sTrackerServerStatus === 1" ng-click="stopSTrackerServer()">
 												<span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop
 											</button>
@@ -157,13 +157,13 @@
 
 							<fieldset class="top10" ng-show="acServerStatus === 1">
 								<legend>Server Status</legend>
-								
+
 								<div class="row">
 									<div class="col-sm-12">
 										<p>Current Session: {{serverStatus.session}}</p>
 									</div>
 								</div>
-							</fieldset>  
+							</fieldset>
 						</form>
 					</div>
 				</div>
