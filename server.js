@@ -124,8 +124,10 @@ if (username !== '' && password !== '') {
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/frontend'));
 
+var root = process.env.APIGEE_PROXY;
+
 // get complete configuration
-app.get('api', function (req, res) {
+app.get(root + '/api', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config);
@@ -137,7 +139,7 @@ app.get('api', function (req, res) {
 });
 
 // get server config
-app.get('api/server', function (req, res) {
+app.get(root + '/api/server', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.SERVER);
@@ -149,7 +151,7 @@ app.get('api/server', function (req, res) {
 });
 
 // get server status
-app.get('api/server/status', function (req, res) {
+app.get(root + '/api/server/status', function (req, res) {
 	try {
 		res.status(200);
 		res.send({ session: currentSession });
@@ -161,7 +163,7 @@ app.get('api/server/status', function (req, res) {
 });
 
 // get server config by id
-app.get('api/server/:id', function (req, res) {
+app.get(root + '/api/server/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send({ value: config.SERVER[req.params.id.toUpperCase()] });
@@ -173,7 +175,7 @@ app.get('api/server/:id', function (req, res) {
 });
 
 // post new server config
-app.post('api/server', function (req, res) {
+app.post(root + '/api/server', function (req, res) {
 	try {
 		for (var param in req.body) {
 			config.SERVER[param.toUpperCase()] = req.body[param];
@@ -190,7 +192,7 @@ app.post('api/server', function (req, res) {
 });
 
 // post server config by id
-app.post('api/server/:id', function (req, res) {
+app.post(root + '/api/server/:id', function (req, res) {
 	try {
 		config.SERVER[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -205,7 +207,7 @@ app.post('api/server/:id', function (req, res) {
 });
 
 // get booking config
-app.get('api/book', function (req, res) {
+app.get(root + '/api/book', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.BOOK);
@@ -217,7 +219,7 @@ app.get('api/book', function (req, res) {
 });
 
 // get booking config by id
-app.get('api/book/:id', function (req, res) {
+app.get(root + '/api/book/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.BOOK[req.params.id.toUpperCase()]);
@@ -229,7 +231,7 @@ app.get('api/book/:id', function (req, res) {
 });
 
 // post new booking config
-app.post('api/book', function (req, res) {
+app.post(root + '/api/book', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.BOOK) {
@@ -255,7 +257,7 @@ app.post('api/book', function (req, res) {
 });
 
 // post booking config by id
-app.post('api/book/:id', function (req, res) {
+app.post(root + '/api/book/:id', function (req, res) {
 	try {
 		config.BOOK[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -269,7 +271,7 @@ app.post('api/book/:id', function (req, res) {
 });
 
 // get practice config
-app.get('api/practice', function (req, res) {
+app.get(root + '/api/practice', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.PRACTICE);
@@ -281,7 +283,7 @@ app.get('api/practice', function (req, res) {
 });
 
 // get practice config by id
-app.get('api/practice/:id', function (req, res) {
+app.get(root + '/api/practice/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.PRACTICE[req.params.id.toUpperCase()]);
@@ -293,7 +295,7 @@ app.get('api/practice/:id', function (req, res) {
 });
 
 // post new practice config
-app.post('api/practice', function (req, res) {
+app.post(root + '/api/practice', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.PRACTICE) {
@@ -320,7 +322,7 @@ app.post('api/practice', function (req, res) {
 });
 
 // post practice config by id
-app.post('api/practice/:id', function (req, res) {
+app.post(root + '/api/practice/:id', function (req, res) {
 	try {
 		config.PRACTICE[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -334,7 +336,7 @@ app.post('api/practice/:id', function (req, res) {
 });
 
 // get qualify config
-app.get('api/qualify', function (req, res) {
+app.get(root + '/api/qualify', function (req, res) {
 	try {
 		res.send(config.QUALIFY);
 	} catch (e) {
@@ -345,7 +347,7 @@ app.get('api/qualify', function (req, res) {
 });
 
 // get qualify config by id
-app.get('api/qualify/:id', function (req, res) {
+app.get(root + '/api/qualify/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.QUALIFY[req.params.id.toUpperCase()]);
@@ -358,7 +360,7 @@ app.get('api/qualify/:id', function (req, res) {
 });
 
 // post new qualify config
-app.post('api/qualify', function (req, res) {
+app.post(root + '/api/qualify', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.QUALIFY) {
@@ -384,7 +386,7 @@ app.post('api/qualify', function (req, res) {
 });
 
 // post qualify config
-app.post('api/qualify/:id', function (req, res) {
+app.post(root + '/api/qualify/:id', function (req, res) {
 	try {
 		config.QUALIFY[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -398,7 +400,7 @@ app.post('api/qualify/:id', function (req, res) {
 });
 
 // get race config
-app.get('api/race', function (req, res) {
+app.get(root + '/api/race', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.RACE);
@@ -410,7 +412,7 @@ app.get('api/race', function (req, res) {
 });
 
 // get race config by id
-app.get('api/race/:id', function (req, res) {
+app.get(root + '/api/race/:id', function (req, res) {
 	try {
 		res.send(config.RACE[req.params.id.toUpperCase()]);
 	} catch (e) {
@@ -421,7 +423,7 @@ app.get('api/race/:id', function (req, res) {
 });
 
 // post new race config
-app.post('api/race', function (req, res) {
+app.post(root + '/api/race', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.RACE) {
@@ -447,7 +449,7 @@ app.post('api/race', function (req, res) {
 });
 
 // post race config by id
-app.post('api/race/:id', function (req, res) {
+app.post(root + '/api/race/:id', function (req, res) {
 	try {
 		config.RACE[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -461,7 +463,7 @@ app.post('api/race/:id', function (req, res) {
 });
 
 // get dynamictrack config
-app.get('api/dynamictrack', function (req, res) {
+app.get(root + '/api/dynamictrack', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.DYNAMIC_TRACK);
@@ -473,7 +475,7 @@ app.get('api/dynamictrack', function (req, res) {
 });
 
 // get dynamictrack config by id
-app.get('api/dynamictrack/:id', function (req, res) {
+app.get(root + '/api/dynamictrack/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.DYNAMIC_TRACK[req.params.id.toUpperCase()]);
@@ -485,7 +487,7 @@ app.get('api/dynamictrack/:id', function (req, res) {
 });
 
 // post dynamictrack config
-app.post('api/dynamictrack', function (req, res) {
+app.post(root + '/api/dynamictrack', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.DYNAMIC_TRACK) {
@@ -511,7 +513,7 @@ app.post('api/dynamictrack', function (req, res) {
 });
 
 // post track dynamictrack config by id
-app.post('api/dynamictrack/:id', function (req, res) {
+app.post(root + '/api/dynamictrack/:id', function (req, res) {
 	try {
 		config.DYNAMIC_TRACK[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -525,7 +527,7 @@ app.post('api/dynamictrack/:id', function (req, res) {
 });
 
 // get weather config
-app.get('api/weather', function (req, res) {
+app.get(root + '/api/weather', function (req, res) {
 	try {
 		var weather = [];
 
@@ -545,7 +547,7 @@ app.get('api/weather', function (req, res) {
 });
 
 // post weather config
-app.post('api/weather', function (req, res) {
+app.post(root + '/api/weather', function (req, res) {
 	try {
 		Object.keys(config).forEach(function (key) {
 			if (key.indexOf("WEATHER_") === 0) {
@@ -568,7 +570,7 @@ app.post('api/weather', function (req, res) {
 });
 
 // get tracks available on server
-app.get('api/tracks', function (req, res) {
+app.get(root + '/api/tracks', function (req, res) {
 	try {
 		var trackNames = fs.readdirSync(contentPath + "/tracks");
 		var tracks = [];
@@ -599,7 +601,7 @@ app.get('api/tracks', function (req, res) {
 });
 
 // get track
-app.get('api/tracks/:track', function (req, res) {
+app.get(root + '/api/tracks/:track', function (req, res) {
 	try {
 		var trackDetails = fs.readFileSync(contentPath + '/tracks/' + req.params.track + '/ui/ui_track.json', 'utf-8');
 		res.status(200);
@@ -612,7 +614,7 @@ app.get('api/tracks/:track', function (req, res) {
 });
 
 // get track image
-app.get('api/tracks/:track/image', function (req, res) {
+app.get(root + '/api/tracks/:track/image', function (req, res) {
 	try {
 		res.status(200);;
 		var image = fs.readFileSync(contentPath + '/tracks/' + req.params.track + '/ui/preview.png');
@@ -626,7 +628,7 @@ app.get('api/tracks/:track/image', function (req, res) {
 });
 
 // get track config
-app.get('api/tracks/:track/:config', function (req, res) {
+app.get(root + '/api/tracks/:track/:config', function (req, res) {
 	try {
 		var trackDetails = fs.readFileSync(contentPath + '/tracks/' + req.params.track + '/ui/' + req.params.config + '/ui_track.json', 'utf-8');
 		res.status(200);
@@ -639,7 +641,7 @@ app.get('api/tracks/:track/:config', function (req, res) {
 });
 
 // get track config image
-app.get('api/tracks/:track/:config/image', function (req, res) {
+app.get(root + '/api/tracks/:track/:config/image', function (req, res) {
 	try {
 		res.status(200);;
 		var image = fs.readFileSync(contentPath + '/tracks/' + req.params.track + '/ui/' + req.params.config + '/preview.png');
@@ -653,7 +655,7 @@ app.get('api/tracks/:track/:config/image', function (req, res) {
 });
 
 // get cars available on server
-app.get('api/cars', function (req, res) {
+app.get(root + '/api/cars', function (req, res) {
 	try {
 		var cars = fs.readdirSync(contentPath + "/cars");
 		res.status(200);
@@ -666,7 +668,7 @@ app.get('api/cars', function (req, res) {
 });
 
 // get car skin
-app.get('api/cars/:car', function (req, res) {
+app.get(root + '/api/cars/:car', function (req, res) {
 	try {
 		var skins = {}
 		try {
@@ -686,7 +688,7 @@ app.get('api/cars/:car', function (req, res) {
 });
 
 // get entry list
-app.get('api/entrylist', function (req, res) {
+app.get(root + '/api/entrylist', function (req, res) {
 	try {
 		res.status(200);
 		res.send(entryList);
@@ -698,7 +700,7 @@ app.get('api/entrylist', function (req, res) {
 });
 
 // post entry list
-app.post('api/entrylist', function (req, res) {
+app.post(root + '/api/entrylist', function (req, res) {
 	try {
 		var newEntryList = {};
 
@@ -719,7 +721,7 @@ app.post('api/entrylist', function (req, res) {
 });
 
 // get drivers
-app.get('api/drivers', function (req, res) {
+app.get(root + '/api/drivers', function (req, res) {
 	try {
 		var drivers = [];
 
@@ -740,7 +742,7 @@ app.get('api/drivers', function (req, res) {
 });
 
 // post drivers
-app.post('api/drivers', function (req, res) {
+app.post(root + '/api/drivers', function (req, res) {
 	try {
 		var drivers = [];
 		var driver = {};
@@ -774,7 +776,7 @@ app.post('api/drivers', function (req, res) {
 });
 
 // delete driver by guid
-app.delete('api/drivers/:guid', function (req, res) {
+app.delete(root + '/api/drivers/:guid', function (req, res) {
 	try {
 		var guid = req.params.guid;
 		if (!guid) {
@@ -816,7 +818,7 @@ app.delete('api/drivers/:guid', function (req, res) {
 });
 
 // get tyres for cars
-app.get('api/tyres', function (req, res) {
+app.get(root + '/api/tyres', function (req, res) {
 	try {
 		var result = ksTyres;
 		if (modTyres) {
@@ -845,7 +847,7 @@ app.get('api/tyres', function (req, res) {
 });
 
 // get acserver status
-app.get('api/acserver/status', function (req, res) {
+app.get(root + '/api/acserver/status', function (req, res) {
 	try {
 		res.status(200);
 		res.send({ status: acServerStatus });
@@ -857,7 +859,7 @@ app.get('api/acserver/status', function (req, res) {
 });
 
 // start acserver process
-app.post('api/acserver', function (req, res) {
+app.post(root + '/api/acserver', function (req, res) {
 	try {
 		console.log("OS is " + process.platform);
 		var acServer = undefined;
@@ -922,7 +924,7 @@ app.post('api/acserver', function (req, res) {
 });
 
 // post stop ac server
-app.post('api/acserver/stop', function (req, res) {
+app.post(root + '/api/acserver/stop', function (req, res) {
 	try {
 		if (acServerPid) {
 			if (isRunningOnWindows) {
@@ -947,7 +949,7 @@ app.post('api/acserver/stop', function (req, res) {
 });
 
 // get stracker server status
-app.get('api/strackerserver/status', function (req, res) {
+app.get(root + '/api/strackerserver/status', function (req, res) {
 	try {
 		res.status(200);
 		res.send({ status: sTrackerPath === '' ? -2 : sTrackerServerStatus });
@@ -959,7 +961,7 @@ app.get('api/strackerserver/status', function (req, res) {
 });
 
 // post start stracker server
-app.post('api/strackerserver', function (req, res) {
+app.post(root + '/api/strackerserver', function (req, res) {
 	try {
 		var sTracker = childProcess.spawn('stracker.exe', ['--stracker_ini', 'stracker.ini'], { cwd: sTrackerPath });
 		sTrackerServerPid = sTracker.pid;
@@ -992,7 +994,7 @@ app.post('api/strackerserver', function (req, res) {
 });
 
 // post stop stracker server
-app.post('api/strackerserver/stop', function (req, res) {
+app.post(root + '/api/strackerserver/stop', function (req, res) {
 	try {
 		if (sTrackerServerPid) {
 			childProcess.spawn("taskkill", ["/pid", sTrackerServerPid, '/f', '/t']);
