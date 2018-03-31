@@ -127,7 +127,7 @@ app.use(express.static(__dirname + '/frontend'));
 var root = process.env.APIGEE_PROXY;
 
 // get complete configuration
-app.get(root + '/api', function (req, res) {
+app.get('/lobby/api', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config);
@@ -139,7 +139,7 @@ app.get(root + '/api', function (req, res) {
 });
 
 // get server config
-app.get(root + '/api/server', function (req, res) {
+app.get('/lobby/api/server', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.SERVER);
@@ -151,7 +151,7 @@ app.get(root + '/api/server', function (req, res) {
 });
 
 // get server status
-app.get(root + '/api/server/status', function (req, res) {
+app.get('/lobby/api/server/status', function (req, res) {
 	try {
 		res.status(200);
 		res.send({ session: currentSession });
@@ -163,7 +163,7 @@ app.get(root + '/api/server/status', function (req, res) {
 });
 
 // get server config by id
-app.get(root + '/api/server/:id', function (req, res) {
+app.get('/lobby/api/server/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send({ value: config.SERVER[req.params.id.toUpperCase()] });
@@ -175,7 +175,7 @@ app.get(root + '/api/server/:id', function (req, res) {
 });
 
 // post new server config
-app.post(root + '/api/server', function (req, res) {
+app.post('/lobby/api/server', function (req, res) {
 	try {
 		for (var param in req.body) {
 			config.SERVER[param.toUpperCase()] = req.body[param];
@@ -192,7 +192,7 @@ app.post(root + '/api/server', function (req, res) {
 });
 
 // post server config by id
-app.post(root + '/api/server/:id', function (req, res) {
+app.post('/lobby/api/server/:id', function (req, res) {
 	try {
 		config.SERVER[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -207,7 +207,7 @@ app.post(root + '/api/server/:id', function (req, res) {
 });
 
 // get booking config
-app.get(root + '/api/book', function (req, res) {
+app.get('/lobby/api/book', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.BOOK);
@@ -219,7 +219,7 @@ app.get(root + '/api/book', function (req, res) {
 });
 
 // get booking config by id
-app.get(root + '/api/book/:id', function (req, res) {
+app.get('/lobby/api/book/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.BOOK[req.params.id.toUpperCase()]);
@@ -231,7 +231,7 @@ app.get(root + '/api/book/:id', function (req, res) {
 });
 
 // post new booking config
-app.post(root + '/api/book', function (req, res) {
+app.post('/lobby/api/book', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.BOOK) {
@@ -257,7 +257,7 @@ app.post(root + '/api/book', function (req, res) {
 });
 
 // post booking config by id
-app.post(root + '/api/book/:id', function (req, res) {
+app.post('/lobby/api/book/:id', function (req, res) {
 	try {
 		config.BOOK[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -271,7 +271,7 @@ app.post(root + '/api/book/:id', function (req, res) {
 });
 
 // get practice config
-app.get(root + '/api/practice', function (req, res) {
+app.get('/lobby/api/practice', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.PRACTICE);
@@ -283,7 +283,7 @@ app.get(root + '/api/practice', function (req, res) {
 });
 
 // get practice config by id
-app.get(root + '/api/practice/:id', function (req, res) {
+app.get('/lobby/api/practice/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.PRACTICE[req.params.id.toUpperCase()]);
@@ -295,7 +295,7 @@ app.get(root + '/api/practice/:id', function (req, res) {
 });
 
 // post new practice config
-app.post(root + '/api/practice', function (req, res) {
+app.post('/lobby/api/practice', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.PRACTICE) {
@@ -322,7 +322,7 @@ app.post(root + '/api/practice', function (req, res) {
 });
 
 // post practice config by id
-app.post(root + '/api/practice/:id', function (req, res) {
+app.post('/lobby/api/practice/:id', function (req, res) {
 	try {
 		config.PRACTICE[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -336,7 +336,7 @@ app.post(root + '/api/practice/:id', function (req, res) {
 });
 
 // get qualify config
-app.get(root + '/api/qualify', function (req, res) {
+app.get('/lobby/api/qualify', function (req, res) {
 	try {
 		res.send(config.QUALIFY);
 	} catch (e) {
@@ -347,7 +347,7 @@ app.get(root + '/api/qualify', function (req, res) {
 });
 
 // get qualify config by id
-app.get(root + '/api/qualify/:id', function (req, res) {
+app.get('/lobby/api/qualify/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.QUALIFY[req.params.id.toUpperCase()]);
@@ -360,7 +360,7 @@ app.get(root + '/api/qualify/:id', function (req, res) {
 });
 
 // post new qualify config
-app.post(root + '/api/qualify', function (req, res) {
+app.post('/lobby/api/qualify', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.QUALIFY) {
@@ -386,7 +386,7 @@ app.post(root + '/api/qualify', function (req, res) {
 });
 
 // post qualify config
-app.post(root + '/api/qualify/:id', function (req, res) {
+app.post('/lobby/api/qualify/:id', function (req, res) {
 	try {
 		config.QUALIFY[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -400,7 +400,7 @@ app.post(root + '/api/qualify/:id', function (req, res) {
 });
 
 // get race config
-app.get(root + '/api/race', function (req, res) {
+app.get('/lobby/api/race', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.RACE);
@@ -412,7 +412,7 @@ app.get(root + '/api/race', function (req, res) {
 });
 
 // get race config by id
-app.get(root + '/api/race/:id', function (req, res) {
+app.get('/lobby/api/race/:id', function (req, res) {
 	try {
 		res.send(config.RACE[req.params.id.toUpperCase()]);
 	} catch (e) {
@@ -423,7 +423,7 @@ app.get(root + '/api/race/:id', function (req, res) {
 });
 
 // post new race config
-app.post(root + '/api/race', function (req, res) {
+app.post('/lobby/api/race', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.RACE) {
@@ -449,7 +449,7 @@ app.post(root + '/api/race', function (req, res) {
 });
 
 // post race config by id
-app.post(root + '/api/race/:id', function (req, res) {
+app.post('/lobby/api/race/:id', function (req, res) {
 	try {
 		config.RACE[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -463,7 +463,7 @@ app.post(root + '/api/race/:id', function (req, res) {
 });
 
 // get dynamictrack config
-app.get(root + '/api/dynamictrack', function (req, res) {
+app.get('/lobby/api/dynamictrack', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.DYNAMIC_TRACK);
@@ -475,7 +475,7 @@ app.get(root + '/api/dynamictrack', function (req, res) {
 });
 
 // get dynamictrack config by id
-app.get(root + '/api/dynamictrack/:id', function (req, res) {
+app.get('/lobby/api/dynamictrack/:id', function (req, res) {
 	try {
 		res.status(200);
 		res.send(config.DYNAMIC_TRACK[req.params.id.toUpperCase()]);
@@ -487,7 +487,7 @@ app.get(root + '/api/dynamictrack/:id', function (req, res) {
 });
 
 // post dynamictrack config
-app.post(root + '/api/dynamictrack', function (req, res) {
+app.post('/lobby/api/dynamictrack', function (req, res) {
 	try {
 		if (!Object.keys(req.body).length) {
 			if (config.DYNAMIC_TRACK) {
@@ -513,7 +513,7 @@ app.post(root + '/api/dynamictrack', function (req, res) {
 });
 
 // post track dynamictrack config by id
-app.post(root + '/api/dynamictrack/:id', function (req, res) {
+app.post('/lobby/api/dynamictrack/:id', function (req, res) {
 	try {
 		config.DYNAMIC_TRACK[req.params.id.toUpperCase()] = req.body.value;
 		saveConfig();
@@ -527,7 +527,7 @@ app.post(root + '/api/dynamictrack/:id', function (req, res) {
 });
 
 // get weather config
-app.get(root + '/api/weather', function (req, res) {
+app.get('/lobby/api/weather', function (req, res) {
 	try {
 		var weather = [];
 
@@ -547,7 +547,7 @@ app.get(root + '/api/weather', function (req, res) {
 });
 
 // post weather config
-app.post(root + '/api/weather', function (req, res) {
+app.post('/lobby/api/weather', function (req, res) {
 	try {
 		Object.keys(config).forEach(function (key) {
 			if (key.indexOf("WEATHER_") === 0) {
@@ -570,7 +570,7 @@ app.post(root + '/api/weather', function (req, res) {
 });
 
 // get tracks available on server
-app.get(root + '/api/tracks', function (req, res) {
+app.get('/lobby/api/tracks', function (req, res) {
 	try {
 		var trackNames = fs.readdirSync(contentPath + "/tracks");
 		var tracks = [];
@@ -601,7 +601,7 @@ app.get(root + '/api/tracks', function (req, res) {
 });
 
 // get track
-app.get(root + '/api/tracks/:track', function (req, res) {
+app.get('/lobby/api/tracks/:track', function (req, res) {
 	try {
 		var trackDetails = fs.readFileSync(contentPath + '/tracks/' + req.params.track + '/ui/ui_track.json', 'utf-8');
 		res.status(200);
@@ -614,7 +614,7 @@ app.get(root + '/api/tracks/:track', function (req, res) {
 });
 
 // get track image
-app.get(root + '/api/tracks/:track/image', function (req, res) {
+app.get('/lobby/api/tracks/:track/image', function (req, res) {
 	try {
 		res.status(200);;
 		var image = fs.readFileSync(contentPath + '/tracks/' + req.params.track + '/ui/preview.png');
@@ -628,7 +628,7 @@ app.get(root + '/api/tracks/:track/image', function (req, res) {
 });
 
 // get track config
-app.get(root + '/api/tracks/:track/:config', function (req, res) {
+app.get('/lobby/api/tracks/:track/:config', function (req, res) {
 	try {
 		var trackDetails = fs.readFileSync(contentPath + '/tracks/' + req.params.track + '/ui/' + req.params.config + '/ui_track.json', 'utf-8');
 		res.status(200);
@@ -641,7 +641,7 @@ app.get(root + '/api/tracks/:track/:config', function (req, res) {
 });
 
 // get track config image
-app.get(root + '/api/tracks/:track/:config/image', function (req, res) {
+app.get('/lobby/api/tracks/:track/:config/image', function (req, res) {
 	try {
 		res.status(200);;
 		var image = fs.readFileSync(contentPath + '/tracks/' + req.params.track + '/ui/' + req.params.config + '/preview.png');
@@ -655,7 +655,7 @@ app.get(root + '/api/tracks/:track/:config/image', function (req, res) {
 });
 
 // get cars available on server
-app.get(root + '/api/cars', function (req, res) {
+app.get('/lobby/api/cars', function (req, res) {
 	try {
 		var cars = fs.readdirSync(contentPath + "/cars");
 		res.status(200);
@@ -668,7 +668,7 @@ app.get(root + '/api/cars', function (req, res) {
 });
 
 // get car skin
-app.get(root + '/api/cars/:car', function (req, res) {
+app.get('/lobby/api/cars/:car', function (req, res) {
 	try {
 		var skins = {}
 		try {
@@ -688,7 +688,7 @@ app.get(root + '/api/cars/:car', function (req, res) {
 });
 
 // get entry list
-app.get(root + '/api/entrylist', function (req, res) {
+app.get('/lobby/api/entrylist', function (req, res) {
 	try {
 		res.status(200);
 		res.send(entryList);
@@ -700,7 +700,7 @@ app.get(root + '/api/entrylist', function (req, res) {
 });
 
 // post entry list
-app.post(root + '/api/entrylist', function (req, res) {
+app.post('/lobby/api/entrylist', function (req, res) {
 	try {
 		var newEntryList = {};
 
@@ -721,7 +721,7 @@ app.post(root + '/api/entrylist', function (req, res) {
 });
 
 // get drivers
-app.get(root + '/api/drivers', function (req, res) {
+app.get('/lobby/api/drivers', function (req, res) {
 	try {
 		var drivers = [];
 
@@ -742,7 +742,7 @@ app.get(root + '/api/drivers', function (req, res) {
 });
 
 // post drivers
-app.post(root + '/api/drivers', function (req, res) {
+app.post('/lobby/api/drivers', function (req, res) {
 	try {
 		var drivers = [];
 		var driver = {};
@@ -776,7 +776,7 @@ app.post(root + '/api/drivers', function (req, res) {
 });
 
 // delete driver by guid
-app.delete(root + '/api/drivers/:guid', function (req, res) {
+app.delete('/lobby/api/drivers/:guid', function (req, res) {
 	try {
 		var guid = req.params.guid;
 		if (!guid) {
@@ -818,7 +818,7 @@ app.delete(root + '/api/drivers/:guid', function (req, res) {
 });
 
 // get tyres for cars
-app.get(root + '/api/tyres', function (req, res) {
+app.get('/lobby/api/tyres', function (req, res) {
 	try {
 		var result = ksTyres;
 		if (modTyres) {
@@ -847,7 +847,7 @@ app.get(root + '/api/tyres', function (req, res) {
 });
 
 // get acserver status
-app.get(root + '/api/acserver/status', function (req, res) {
+app.get('/lobby/api/acserver/status', function (req, res) {
 	try {
 		res.status(200);
 		res.send({ status: acServerStatus });
@@ -859,7 +859,7 @@ app.get(root + '/api/acserver/status', function (req, res) {
 });
 
 // start acserver process
-app.post(root + '/api/acserver', function (req, res) {
+app.post('/lobby/api/acserver', function (req, res) {
 	try {
 		console.log("OS is " + process.platform);
 		var acServer = undefined;
@@ -924,7 +924,7 @@ app.post(root + '/api/acserver', function (req, res) {
 });
 
 // post stop ac server
-app.post(root + '/api/acserver/stop', function (req, res) {
+app.post('/lobby/api/acserver/stop', function (req, res) {
 	try {
 		if (acServerPid) {
 			if (isRunningOnWindows) {
@@ -949,7 +949,7 @@ app.post(root + '/api/acserver/stop', function (req, res) {
 });
 
 // get stracker server status
-app.get(root + '/api/strackerserver/status', function (req, res) {
+app.get('/lobby/api/strackerserver/status', function (req, res) {
 	try {
 		res.status(200);
 		res.send({ status: sTrackerPath === '' ? -2 : sTrackerServerStatus });
@@ -961,7 +961,7 @@ app.get(root + '/api/strackerserver/status', function (req, res) {
 });
 
 // post start stracker server
-app.post(root + '/api/strackerserver', function (req, res) {
+app.post('/lobby/api/strackerserver', function (req, res) {
 	try {
 		var sTracker = childProcess.spawn('stracker.exe', ['--stracker_ini', 'stracker.ini'], { cwd: sTrackerPath });
 		sTrackerServerPid = sTracker.pid;
@@ -994,7 +994,7 @@ app.post(root + '/api/strackerserver', function (req, res) {
 });
 
 // post stop stracker server
-app.post(root + '/api/strackerserver/stop', function (req, res) {
+app.post('/lobby/api/strackerserver/stop', function (req, res) {
 	try {
 		if (sTrackerServerPid) {
 			childProcess.spawn("taskkill", ["/pid", sTrackerServerPid, '/f', '/t']);
